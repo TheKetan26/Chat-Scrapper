@@ -8,7 +8,8 @@ from json import dumps
 driver = webdriver.Firefox()
 driver.set_window_position(-10000, -10000)
 
-user, target = input().split()
+user = input("Enter folder name: ")
+target = input("Enter complete user name: ")
 
 words = {}
 print('Starting scrapping!')
