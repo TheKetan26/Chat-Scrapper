@@ -1,8 +1,34 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+import numpy as np
+import pandas as pd
 from os import getcwd
 from json import dumps
+
+
+class File:
+    def __init__(self):
+        self.data = pd.read_json('data.json')
+
+    def names(self):
+        return list(self.data.head())
+
+    def list(self, name):
+        print('{:<20} {:<20}'.format(name, 'Count'))
+        words = self.data.to_dict()[name]
+        for key in sorted(words.keys()):
+            if words[key] > 0:
+                print('{:<20} {:<20}'.format(key, int(words[key])))
+
+    def count(self, word):
+        try:
+            print(self.data.loc[word])
+        except KeyError:
+            print(f"Word never used!")
+
+    def print(self):
+        print(self.data.head)
 
 
 class FileFolder:
@@ -35,7 +61,7 @@ class FileFolder:
                                 words[name] = {}
                                 words[name][word.lower()] = 1
                     except NoSuchElementException:
-                        print('\nPage', j, 'complete')
+                        print(f'\nPage {j} complete')
                         break
                     print(''.join(['\b'] * len(str(i))), end='')
                     i += 1
