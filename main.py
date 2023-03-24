@@ -29,7 +29,7 @@ if __name__ == '__main__':
                     word = input("Enter word: ")
                     file.count(word)
 
-                case 4:
+                case 0:
                     break
 
     else:
